@@ -13,14 +13,14 @@
 
   @Component
   export default class Types extends Vue {
-    type = "-";
-    @Prop(Number) propA:number | undefined;
+    @Prop() readonly type!:string ;
     selectType(type:string) {
       if(type !== '-' && type !=='+' ){
         throw new Error('type is unknown')
       }
-      this.type = type;
+      this.$emit('update:type',type)
     }
+
   }
 </script>
 
