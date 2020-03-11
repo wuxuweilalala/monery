@@ -1,6 +1,16 @@
 <template>
     <Layout>
-        编辑标签
+        <div class="navBar">
+             <Icon class="leftIcon" name="right" />
+            <span class="title">编辑标签</span>
+            <span></span>
+        </div>
+        <div class="form-wrapper">
+            <Notes field-name="标签名" placeholder="请输入标签名" />
+        </div>
+        <div class="buttonWrapper">
+            <Button >删除标签</Button>
+        </div>
     </Layout>
 </template>
 
@@ -9,8 +19,11 @@
     import  Vue from 'vue';
     import {Component} from 'vue-property-decorator';
     import tagListModel from '@/models/tagListMode';
-
-@Component
+    import Notes from '@/components/Money/Notes.vue';
+    import Button from '@/components/Button.vue';
+    @Component({
+        components: {Button, Notes}
+    })
     export default class EditLabel extends Vue {
         created(){
             const id = this.$route.params.id;
@@ -22,12 +35,33 @@
             }else {
                 this.$router.replace('/404')
             }
-            console.log(this.$route.params.id);
         }
     }
 
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+.navBar {
+    font-size: 16px;
+    padding:12px 16px;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    > .title {
 
+    }
+    > .leftIcon {
+        transform: rotate(180deg);
+    }
+}
+    .form-wrapper {
+        margin-top: 8px;
+        background: white;
+    }
+    .buttonWrapper {
+        text-align: center;
+        padding:16px;
+        margin-top: 28px;
+    }
 </style>

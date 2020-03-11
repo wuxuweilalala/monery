@@ -2,7 +2,9 @@
   <Layout class-prefix="layout">
     <NumberPad :amount.sync="record.amount" @submit="saveRecord"/>
     <Types  :type.sync="record.type"/>
-    <Notes @update:value="onUpdateNotes"/>
+    <div class="noteWrapper">
+      <Notes field-name="备注"  placeholder="在这里输入备注"  @update:value="onUpdateNotes"/>
+    </div>
     <Tags :data-source.sync="tags" @update:value="onUpdateTags"/>
   </Layout>
 </template>
@@ -60,4 +62,7 @@ export default class Money extends Vue{
   display: flex;
   flex-direction: column-reverse;
 }
+  .noteWrapper {
+    padding:12px 0;
+  }
 </style>

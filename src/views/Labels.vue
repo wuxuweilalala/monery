@@ -4,7 +4,7 @@
       <li v-for="tag in tags" :key="tag.id" @click="toEditLabel(tag)"> <span>{{tag.name}}</span>   <Icon name="right"></Icon> </li>
     </ol>
     <div class="createTagWrapper">
-      <button class="createTag" @click="createTag">新建标签</button>
+      <Button  @click.native="createTag">新建标签</Button>
     </div>
   </Layout>
 </template>
@@ -13,9 +13,11 @@
   import Vue from 'vue';
   import {Component} from 'vue-property-decorator';
   import tagListModel from '@/models/tagListMode';
+  import Button from '@/components/Button.vue';
 tagListModel.fetch()
-
-@Component
+  @Component({
+    components: {Button}
+  })
   export  default class Labels extends Vue {
     tags = tagListModel.data;
 
@@ -53,15 +55,7 @@ tagListModel.fetch()
     text-align: center;
     padding: 16px;
     margin-top: 44-16px;
-    .createTag {
-      height: 40px;
-      padding:0 16px;
-      background: #767676;
-      color:white;
-      border-radius: 4px;
-      border:none;
 
-    }
   }
 
 </style>
