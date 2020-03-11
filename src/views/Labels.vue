@@ -1,10 +1,63 @@
 <template>
-  <Layout>Label.vue</Layout>
+  <Layout>
+    <ol class="tags">
+      <li v-for="tag in tags" :key="tag"> <span>{{tag}}</span>   <Icon name="right"></Icon> </li>
+    </ol>
+    <div class="createTagWrapper">
+      <button class="createTag" @click="createTag">新建标签</button>
+    </div>
+  </Layout>
 </template>
 
-<script>
-export default {};
+<script lang="ts">
+  import Vue from 'vue';
+  import {Component} from 'vue-property-decorator';
+  import tagListModel from '@/models/tagListMode';
+tagListModel.fetch()
+
+@Component
+  export  default class Labels extends Vue {
+    tags = tagListModel.data;
+
+    createTag(){
+          const name = window.prompt('请输出标签名')
+          name && tagListModel.create(name)
+    }
+  }
 </script>
 
 <style lang="scss" scoped>
+  .tags {
+    background: white;
+    font-size: 16px;
+    > li {
+      min-height: 44px;
+      display: flex;
+      align-items:center;
+      justify-content: space-between;
+      padding-left: 16px;
+      border-bottom: 1px solid #e6e6e6;
+      svg {
+        width: 18px;
+        height: 18px;
+        color:#666;
+        margin-right: 16px;
+      }
+    }
+  }
+  .createTagWrapper {
+    text-align: center;
+    padding: 16px;
+    margin-top: 44-16px;
+    .createTag {
+      height: 40px;
+      padding:0 16px;
+      background: #767676;
+      color:white;
+      border-radius: 4px;
+      border:none;
+
+    }
+  }
+
 </style>
