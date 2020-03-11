@@ -2,7 +2,7 @@
   <div>
     <label class="notes">
       <span class="name">{{fieldName}}</span>
-      <input type="text" v-model="inputValue" :placeholder="placeholder" >
+      <input type="text" :value="inputValue" @change="onValueChange($event.target.value)" :placeholder="placeholder" >
     </label>
   </div>
 </template>
@@ -13,7 +13,7 @@ import {Component,Watch,Prop} from 'vue-property-decorator';
 
   @Component
   export default class Notes extends Vue {
-    inputValue:string  = '';
+    @Prop({default:""}) inputValue!:string ;
     // onChange(event:KeyboardEvent){
     //   const input = event.target as HTMLInputElement;
     //   console.log(input.value);

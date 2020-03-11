@@ -5,7 +5,7 @@
     <div class="noteWrapper">
       <Notes field-name="备注"  placeholder="在这里输入备注"  @update:value="onUpdateNotes"/>
     </div>
-    <Tags :data-source.sync="tags" @update:value="onUpdateTags"/>
+    <Tags :data-source.sync="tags" />
   </Layout>
 </template>
 
@@ -39,10 +39,6 @@ export default class Money extends Vue{
   }
   onUpdateNotes(value:string){
     this.record.notes = value;
-
-  }
-  onUpdateTags(value:string[]){
-    this.record.tags = value;
   }
   saveRecord(){
     const deepClone:RecordItem =  recordListModel.clone(this.record) ;
@@ -53,6 +49,11 @@ export default class Money extends Vue{
   @Watch('recordList')
   onRecordListChange(){
     recordListModel.save(this.recordList);
+  }
+  @Watch('tags')
+  onTagsChange(){
+    tagListModel.create(this.tags[this.tags.length-1].name)
+    console.log(this.tags);
   }
 }
 </script>

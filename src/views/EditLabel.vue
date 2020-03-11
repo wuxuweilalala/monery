@@ -6,7 +6,7 @@
             <span></span>
         </div>
         <div class="form-wrapper">
-            <Notes field-name="标签名" placeholder="请输入标签名" />
+            <Notes :inputValue="inputValue" field-name="标签名" placeholder="请输入标签名" />
         </div>
         <div class="buttonWrapper">
             <Button >删除标签</Button>
@@ -25,13 +25,15 @@
         components: {Button, Notes}
     })
     export default class EditLabel extends Vue {
+        inputValue = ''
         created(){
             const id = this.$route.params.id;
             tagListModel.fetch;
             const tags = tagListModel.data;
             const tag = tags.filter(tag =>tag.id === id)[0];
             if(tag){
-                console.log(tag);
+                this.inputValue = tag.name
+                console.log(tag.name);
             }else {
                 this.$router.replace('/404')
             }
