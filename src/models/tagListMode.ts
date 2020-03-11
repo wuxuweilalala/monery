@@ -1,20 +1,25 @@
-
+type Tag = {
+    id:string;
+    name:string;
+}
 type tagListModel = {
-    data:string[]
-    fetch:()=>string[]
+    data:Tag[]
+    fetch:()=>Tag[]
     create:(name:string)=>boolean
     save:()=>void
 }
 
 const tagListModel:tagListModel = {
-    data:['衣','食','住','行',],
+    data:[],
     fetch(){
         this.data = JSON.parse(window.localStorage.getItem('tagListModel' )|| '[]') ;
         return this.data
     },
     create(name:string){
-        if(this.data.indexOf(name) >=0){return false}
-        this.data.push(name);
+        for(let i of this.data) {
+            if(i.name === name ){return false}
+        }
+        this.data.push({id:name,name});
         this.save();
         return true
     },
