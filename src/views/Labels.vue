@@ -1,7 +1,8 @@
 <template>
   <Layout>
     <ol class="tags">
-      <li v-for="tag in tags" :key="tag.id" @click="toEditLabel(tag)"> <span>{{tag.name}}</span>   <Icon name="right"></Icon> </li>
+      <li v-for="tag in tags" :key="tag.id" @click="toEditLabel(tag)"> <span>{{tag.name}}</span>
+        <Icon name="right"/> </li>
     </ol>
     <div class="createTagWrapper">
       <Button  @click.native="createTag">新建标签</Button>
@@ -25,8 +26,7 @@ tagListModel.fetch()
           const name = window.prompt('请输出标签名')
           name && tagListModel.create(name)
     }
-  toEditLabel(tag){
-    console.log(tag);
+  toEditLabel(tag:{id:string,name:string}){
     this.$router.push(`/labels/edit/${tag.id}`)
   }
   }

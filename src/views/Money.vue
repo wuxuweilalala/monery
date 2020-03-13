@@ -44,7 +44,6 @@ export default class Money extends Vue{
     const deepClone:RecordItem =  recordListModel.clone(this.record) ;
     deepClone.createdAt = new Date();
     this.recordList.push(deepClone)
-    console.log(this.recordList);
   }
   @Watch('recordList')
   onRecordListChange(){
@@ -53,7 +52,6 @@ export default class Money extends Vue{
   @Watch('tags')
   onTagsChange(){
     tagListModel.create(this.tags[this.tags.length-1].name)
-    console.log(this.tags);
   }
 }
 </script>
