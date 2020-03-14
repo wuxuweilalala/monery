@@ -41,7 +41,7 @@
         }
         updateTag(name:string){
             if(this.tags) {
-                tagListModel.update(this.tags.id,name);
+                 tagListModel.update(this.tags.id,name);
             }
         }
         deleteTag(){

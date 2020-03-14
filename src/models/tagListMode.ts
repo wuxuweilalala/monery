@@ -1,3 +1,5 @@
+import createId from '@/lib/createId';
+
 type Tag = {
     id:string;
     name:string;
@@ -27,7 +29,6 @@ const tagListModel:tagListModel = {
                 return 'duplicated'
             }else {
                 const tag = this.data.filter(item => item.id === id)[0];
-                tag.id = name;
                 tag.name = name;
                 this.save();
                 return 'success'
@@ -40,7 +41,8 @@ const tagListModel:tagListModel = {
         for(let i of this.data) {
             if(i.name === name ){return false}
         }
-        this.data.push({id:name,name});
+        const id = createId().toString();
+        this.data.push({id,name});
         this.save();
         return true
     },
