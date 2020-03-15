@@ -1,12 +1,18 @@
- const recordListModel = {
-    clone(data:RecordItem[] | RecordItem){
-       return JSON.parse(JSON.stringify(data))
-    },
+import clone from '@/lib/clone';
+
+const recordListModel = {
+    data:[] as RecordItem[],
+     create(record:RecordItem){
+         const deepClone:RecordItem =  clone(record) ;
+         deepClone.createdAt = new Date();
+         this.data.push(deepClone)
+     },
     fetch(){
-        return JSON.parse(window.localStorage.getItem('recordList' )|| '[]') as RecordItem[] ;
+        this.data = JSON.parse(window.localStorage.getItem('recordList' )|| '[]') as RecordItem[]
+        return  this.data;
     },
-     save(data:RecordItem[]){
-         window.localStorage.setItem('recordList',JSON.stringify(data));
+     save(){
+         window.localStorage.setItem('recordList',JSON.stringify(this.data));
      }
  }
 

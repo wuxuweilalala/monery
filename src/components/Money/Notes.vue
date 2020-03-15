@@ -16,7 +16,6 @@ import {Component,Watch,Prop} from 'vue-property-decorator';
     @Prop({default:""}) readonly inputValue!:string ;
     @Prop({required:true}) fieldName!:string;
     @Prop() placeholder!:string;
-    @Watch('inputValue')
     onValueChange(value:string) {
       this.$emit('update:input-value',value)
     }
