@@ -21,6 +21,7 @@
     import tagListModel from '@/models/tagListModel';
     import Notes from '@/components/Money/Notes.vue';
     import Button from '@/components/Button.vue';
+    import store from '@/store/index2';
     @Component({
         components: {Button, Notes}
     })
@@ -29,7 +30,7 @@
         inputValue = ''
         created(){
             const id = this.$route.params.id;
-            const tags = window.tagList;
+            const tags = store.tagList;
             const tag = tags.filter(tag =>tag.id === id)[0];
             if(tag){
                 this.tags = tag
@@ -39,12 +40,12 @@
         }
         updateTag(name:string){
             if(this.tags) {
-                window.update(this.tags.id,name)
+                store.update(this.tags.id,name)
             }
         }
         deleteTag(){
             if(this.tags){
-                window.removeTag(this.tags.id);
+                store.removeTag(this.tags.id);
                 this.$router.push('/labels')
             }
         }
