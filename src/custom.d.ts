@@ -11,6 +11,8 @@ interface Window {
     createTag:(name:string) => void;
     removeTag:(id:string)=> void;
     update:(id:string,name:string)=>void;
+    recordList: RecordItem[];
+    createRecord:(record:RecordItem)=> void;
 }
 type Tag = {
     id:string;
