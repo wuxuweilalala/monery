@@ -8,7 +8,9 @@ type RecordItem = {
 
 interface Window {
     tagList: Tag[];
-    createTag:(name:string) => void
+    createTag:(name:string) => void;
+    removeTag:(id:string)=> void;
+    update:(id:string,name:string)=>void;
 }
 type Tag = {
     id:string;

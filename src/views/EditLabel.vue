@@ -21,7 +21,6 @@
     import tagListModel from '@/models/tagListModel';
     import Notes from '@/components/Money/Notes.vue';
     import Button from '@/components/Button.vue';
-    import any = jasmine.any;
     @Component({
         components: {Button, Notes}
     })
@@ -30,8 +29,7 @@
         inputValue = ''
         created(){
             const id = this.$route.params.id;
-            tagListModel.fetch;
-            const tags = tagListModel.data;
+            const tags = window.tagList;
             const tag = tags.filter(tag =>tag.id === id)[0];
             if(tag){
                 this.tags = tag
@@ -41,12 +39,12 @@
         }
         updateTag(name:string){
             if(this.tags) {
-                 tagListModel.update(this.tags.id,name);
+                window.update(this.tags.id,name)
             }
         }
         deleteTag(){
             if(this.tags){
-                tagListModel.remove(this.tags.id);
+                window.removeTag(this.tags.id);
                 this.$router.push('/labels')
             }
         }

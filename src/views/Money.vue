@@ -17,7 +17,6 @@ import Notes from "@/components/Money/Notes.vue";
 import Tags from "@/components/Money/Tags.vue";
   import {Component,Watch} from 'vue-property-decorator';
   import recordListModel from '@/models/recordListModel';
-  import tagListModel from '@/models/tagListModel';
 
 const recordList =  recordListModel.fetch();
 
@@ -48,7 +47,7 @@ export default class Money extends Vue{
   }
   @Watch('tags')
   onTagsChange(){
-    tagListModel.create(this.tags[this.tags.length-1].name)
+    window.createTag(this.tags[this.tags.length-1].name)
   }
 }
 </script>
