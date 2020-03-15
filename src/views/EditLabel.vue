@@ -18,7 +18,7 @@
 
     import  Vue from 'vue';
     import {Component} from 'vue-property-decorator';
-    import tagListModel from '@/models/tagListMode';
+    import tagListModel from '@/models/tagListModel';
     import Notes from '@/components/Money/Notes.vue';
     import Button from '@/components/Button.vue';
     import any = jasmine.any;

@@ -1,18 +1,5 @@
 import createId from '@/lib/createId';
 
-type Tag = {
-    id:string;
-    name:string;
-}
-type tagListModel = {
-    data:Tag[]
-    fetch:()=>Tag[]
-    update:(id:string,name:string)=>'success' | 'not found' | 'duplicated'
-    create:(name:string)=>boolean
-    remove:(id:string) => boolean
-    save:()=>void
-}
-
 // @ts-ignore
 // @ts-ignore
 const tagListModel:tagListModel = {
