@@ -30,7 +30,6 @@ export default class Money extends Vue{
   }
   @Watch('tags')
   onTagsChange(){
-    console.log(this.tags[this.tags.length - 1].name);
     store.createTag(this.tags[this.tags.length-1].name)
   }
 }

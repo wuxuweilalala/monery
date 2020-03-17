@@ -22,7 +22,7 @@
     tags = store.tagList;
 
     createTag(){
-          const name = store.prompt('请输出标签名')
+          const name = window.prompt('请输出标签名')
           name && store.createTag(name)
     }
   toEditLabel(tag:{id:string,name:string}){
