@@ -20,17 +20,25 @@
     import {Component} from 'vue-property-decorator';
     import Notes from '@/components/Money/Notes.vue';
     import Button from '@/components/Button.vue';
-    import store from '@/store/index2';
     @Component({
-        components: {Button, Notes}
+        components: {Button, Notes},
+        computed:{
+            tagLists(){
+                return this.$store.state.tagList
+            }
+        }
     })
     export default class EditLabel extends Vue {
         tags?:{id:string,name:string} = undefined
         inputValue = ''
         created(){
+            this.$store.commit('fetchTags')
             const id = this.$route.params.id;
-            const tags = store.tagList;
-            const tag = tags.filter(tag =>tag.id === id)[0];
+            let tag;
+            if(this.tagLists) {
+                tag = this.tagLists.filter(tag =>tag.id === id)[0];
+            }
+            console.log(tag);
             if(tag){
                 this.tags = tag
             }else {
@@ -39,12 +47,12 @@
         }
         updateTag(name:string){
             if(this.tags) {
-                store.updateTags(this.tags.id,name)
+                this.$store.commit('updateTags',this.tags.id,name)
             }
         }
         deleteTag(){
             if(this.tags){
-                store.removeTag(this.tags.id);
+                this.$store.commit('removeTag',this.tags.id);
                 this.$router.push('/labels')
             }
         }
