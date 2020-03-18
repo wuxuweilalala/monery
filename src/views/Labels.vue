@@ -16,18 +16,24 @@
   import Button from '@/components/Button.vue';
   import store from '@/store/index2';
   @Component({
-    components: {Button}
+    components: {Button},
+    computed:{
+      tags(){
+        return this.$store.state.tagList;
+      }
+    }
   })
   export  default class Labels extends Vue {
-    tags = store.tagList;
-
+    created(){
+      this.$store.commit('fetchTags');
+    }
     createTag(){
           const name = window.prompt('请输出标签名')
-          name && store.createTag(name)
+          name && this.$store.commit('createTag',name);
     }
-  toEditLabel(tag:{id:string,name:string}){
-    this.$router.push(`/labels/edit/${tag.id}`)
-  }
+    toEditLabel(tag:{id:string,name:string}){
+      this.$router.push(`/labels/edit/${tag.id}`)
+    }
   }
 </script>
 
