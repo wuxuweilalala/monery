@@ -6,7 +6,7 @@
             <span/>
         </div>
         <div class="form-wrapper">
-            <Notes :inputValue="tags.name" @update:input-value="updateTag" field-name="标签名" placeholder="请输入标签名" />
+            <Notes :inputValue="tag.name" @update:input-value="updateTag" field-name="标签名" placeholder="请输入标签名" />
         </div>
         <div class="buttonWrapper">
             <Button @click.native="deleteTag">删除标签</Button>
@@ -23,25 +23,17 @@
     @Component({
         components: {Button, Notes},
         computed:{
-            tagLists(){
+            tag(){
                 return this.$store.state.tagList
             }
         }
     })
     export default class EditLabel extends Vue {
-        tags?:{id:string,name:string} = undefined
         inputValue = ''
         created(){
-            this.$store.commit('fetchTags')
+            this.$store.commit('setCurrentTag',this.$route.params.id)
             const id = this.$route.params.id;
-            let tag;
-            if(this.tagLists) {
-                tag = this.tagLists.filter(tag =>tag.id === id)[0];
-            }
-            console.log(tag);
-            if(tag){
-                this.tags = tag
-            }else {
+            if(!this.tag){
                 this.$router.replace('/404')
             }
         }
