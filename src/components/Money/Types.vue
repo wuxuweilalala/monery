@@ -20,7 +20,6 @@
       }
       this.$emit('update:type',type)
     }
-
   }
 </script>
 
