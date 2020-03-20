@@ -22,14 +22,12 @@
     import Button from '@/components/Button.vue';
     @Component({
         components: {Button, Notes},
-        computed:{
-            tag(){
-                return this.$store.state.tagList
-            }
-        }
     })
     export default class EditLabel extends Vue {
         inputValue = ''
+        get tag(){
+            return this.$store.state.currentTag
+        }
         created(){
             this.$store.commit('setCurrentTag',this.$route.params.id)
             const id = this.$route.params.id;
@@ -38,13 +36,13 @@
             }
         }
         updateTag(name:string){
-            if(this.tags) {
-                this.$store.commit('updateTags',this.tags.id,name)
+            if(this.tag ) {
+                this.$store.commit('updateTags',this.tag.id,name)
             }
         }
         deleteTag(){
-            if(this.tags){
-                this.$store.commit('removeTag',this.tags.id);
+            if(this.tag){
+                this.$store.commit('removeTag',this.tag.id);
                 this.$router.push('/labels')
             }
         }
