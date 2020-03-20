@@ -48,20 +48,22 @@ const store =  new Vuex.Store({
       state.tagList.push({id,name});
       store.commit('saveTag');
     },
-    updateTags(state,id:string, name:string){
+    updateTags(state,payload:{id:string, name:string}){
+      const {id,name} = payload;
+      // @ts-ignore
       const idList = state.tagList.map(item => item.id);
       if(idList.indexOf(id) >= 0){
+        // @ts-ignore
         const names = state.tagList.map(item=>item.name);
         if(names.indexOf(name) >=0){
-          return 'duplicated'
+          window.alert('标签名重复了')
         }else {
+          // @ts-ignore
           const tag = state.tagList.filter(item => item.id === id)[0];
+          // @ts-ignore
           tag.name = name;
           store.commit('saveTag')
-          return 'success'
         }
-      }else {
-        return 'not found'
       }
     },
     removeTag(state,id:string){
