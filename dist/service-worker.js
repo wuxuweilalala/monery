@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.69859545ebceebc9011fd20c8cef79f9.js"
+  "/monery/dist/precache-manifest.239d10f846566d30a49a5794628d6d84.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "morney"});
