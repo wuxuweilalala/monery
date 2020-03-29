@@ -61,6 +61,8 @@
               .filter((r: { type: string; }) => r.type === this.type)
               .sort((a: { createdAt: any; }, b: { createdAt: any; }) => dayjs(b.createdAt).valueOf() - dayjs(a.createdAt).valueOf());
       type Result = { title: string, total?: number, items: RecordItem[] }[]
+      // eslint-disable-next-line getter-return
+      if(newList.length === 0) {return}
       const result: Result = [{title: dayjs(newList[0].createdAt).format('YYYY-MM-DD'), items: [newList[0]]}];
       for (let i = 1; i < newList.length; i++) {
         const current = newList[i];
